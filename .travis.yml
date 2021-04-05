@@ -1,3 +1,10 @@
 language: c
-script: bash ./travis.sh
 
+arch:
+  - amd64
+  - ppc64le
+
+script:
+  - ./configure
+  - make
+  - sudo make install
