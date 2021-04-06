@@ -4,4 +4,13 @@ arch:
   - amd64
   - ppc64le
 
-script: bash ./travis.sh
+before_install:
+  - apt-get update -y
+  - apt-get install -y git gcc libtool autoconf make
+
+install:
+  - autoreconf -fvi
+  - ./configure --build=ppc64le-redhat-linux --enable-debug=full
+  - make
+  - make check
+  - sudo make install
